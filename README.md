@@ -4,10 +4,10 @@
 <h3>
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.</h3>
 
-<h2>Phases</h2>
+<h2>&diams;	Phases</h2>
 <h3>
 <li>Phase 1 : </li>
-  
+  <br>
   Implement the `push` and `pall` opcodes.
 
 The `push` opcode
