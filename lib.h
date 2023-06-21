@@ -10,8 +10,8 @@
 #define LIMIT 4
 
 /*Global Variables*/
-
-
+int stack_arr[LIMIT];
+int top = -1;
 /*Structures*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
