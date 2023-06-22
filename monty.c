@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <ctype.h>
 
 /**
  * execute_instructions - Executes Monty instructions from a file
@@ -12,31 +11,16 @@ void execute_instructions(FILE *file)
 	instruction_t instruction;
 	char line[1024];
 	char *opcode;
-	char *end;
 
 	while (fgets(line, sizeof(line), file))
 	{
 		line_number++;
-		opcode = line;
+		opcode = strtok(line, " \t\n");
 
-		while (isspace(*opcode))
-			opcode++;
-
-		if (*opcode == '\0' || *opcode == '#')
+		if (opcode == NULL || opcode[0] == '#')
 			continue;
 
-		end = opcode + strlen(opcode) - 1;
-		while (end > opcode && isspace(*end))
-			end--;
-		*(end + 1) = '\0';
-
-		instruction.opcode = strtok(opcode, " \t\n");
-
-		if (instruction.opcode == NULL)
-		{
-			fprintf(stderr, "L%d: missing opcode\n", line_number);
-			exit(EXIT_FAILURE);
-		}
+		instruction.opcode = opcode;
 
 		if (strcmp(instruction.opcode, "push") == 0)
 			instruction.f = push;
@@ -44,6 +28,8 @@ void execute_instructions(FILE *file)
 			instruction.f = pall;
 		else if (strcmp(instruction.opcode, "pop") == 0)
 			instruction.f = pop;
+		else if (strcmp(instruction.opcode, "pint") == 0)
+			instruction.f = pint;
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",
