@@ -36,20 +36,55 @@ void push(stack_t **stack, unsigned int line_number)
 	*stack = new_node;
 }
 
-
 /**
  * pall - Prints all the values on the stack.
  * @stack: Double pointer to the stack.
  * @line_number: Line number in the file.
  */
-void pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number)
 {
-
 	stack_t *current = *stack;
 
+	(void)line_number;
 	while (current != NULL)
 	{
 		printf("%d\n", current->n);
 		current = current->next;
+	}
+}
+
+/**
+ * pop - Removes the top element of the stack.
+ * @stack: Double pointer to the stack.
+ * @line_number: Line number in the file.
+ */
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+	*stack = (*stack)->next;
+	free(temp);
+}
+
+/**
+ * free_stack - Frees a stack.
+ * @stack: Pointer to the top of the stack.
+ */
+void free_stack(stack_t *stack)
+{
+	stack_t *current;
+
+	while (stack != NULL)
+	{
+		current = stack;
+		stack = stack->next;
+		free(current);
 	}
 }

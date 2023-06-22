@@ -1,21 +1,46 @@
 #include "monty.h"
-#include "monty.h"
 
 /**
- * free_stack - Frees a stack.
- * @stack: Pointer to the top of the stack.
+ * execute_instructions - Executes Monty instructions from a file
+ * @file: Pointer to the input file
  */
-void free_stack(stack_t *stack)
+void execute_instructions(FILE *file)
 {
-	stack_t *current;
+	unsigned int line_number = 0;
+	stack_t *stack = NULL;
+	instruction_t instruction;
+	char line[1024];
+	char *opcode;
 
-	while (stack != NULL)
+	while (fgets(line, sizeof(line), file))
 	{
-		current = stack;
-		stack = stack->next;
-		free(current);
+		line_number++;
+		opcode = strtok(line, " \t\n");
+
+		if (opcode == NULL || opcode[0] == '#')
+			continue;
+
+		instruction.opcode = opcode;
+
+		if (strcmp(instruction.opcode, "push") == 0)
+			instruction.f = push;
+		else if (strcmp(instruction.opcode, "pall") == 0)
+			instruction.f = pall;
+		else if (strcmp(instruction.opcode, "pop") == 0)
+			instruction.f = pop;
+		else
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n",
+			line_number, instruction.opcode);
+			exit(EXIT_FAILURE);
+		}
+
+		instruction.f(&stack, line_number);
 	}
+
+	free_stack(stack);
 }
+
 /**
  * main - Entry point of the Monty interpreter.
  * @argc: Number of command-line arguments.
@@ -26,11 +51,6 @@ void free_stack(stack_t *stack)
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	unsigned int line_number = 0;
-	stack_t *stack = NULL;
-	instruction_t instruction;
-	char line[1024];
-	char *opcode;
 
 	if (argc != 2)
 	{
@@ -45,34 +65,8 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	while (fscanf(file, " %[^\n]", line) == 1)
-	{
-
-	line_number++;
-	opcode = strtok(line, " \t\n");
-
-	if (opcode == NULL || opcode[0] == '#')
-		continue;
-
-	instruction.opcode = opcode;
-
-	if (strcmp(instruction.opcode, "push") == 0)
-		instruction.f = push;
-	else if (strcmp(instruction.opcode, "pall") == 0)
-		instruction.f = pall;
-	else if (strcmp(instruction.opcode, "pop") == 0)
-		instruction.f = pop;
-	else
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number
-		, instruction.opcode);
-		exit(EXIT_FAILURE);
-	}
-
-	instruction.f(&stack, line_number);
-	}
+	execute_instructions(file);
 
 	fclose(file);
-	free_stack(stack);
 	exit(EXIT_SUCCESS);
 }
