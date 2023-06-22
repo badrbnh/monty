@@ -45,11 +45,9 @@ void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
 
+	(void)line_number;
 	if (current == NULL)
-	{
-		fprintf(stderr, "L%d: can't pall an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		return;
 
 	while (current != NULL)
 	{
