@@ -19,7 +19,9 @@ void execute_instructions(FILE *file)
 
 		if (opcode == NULL || opcode[0] == '#')
 			continue;
+
 		instruction.opcode = opcode;
+
 		if (strcmp(instruction.opcode, "push") == 0)
 			instruction.f = push;
 		else if (strcmp(instruction.opcode, "pall") == 0)
