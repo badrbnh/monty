@@ -3,7 +3,7 @@
 /**
  * swap - Swaps the top two elements of the stack.
  * @stack: Double pointer to the stack.
- * @line_number: Line number in the file.
+ * @line_number: Line's number in the file.
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
@@ -29,7 +29,7 @@ void swap(stack_t **stack, unsigned int line_number)
 /**
  * add - Adds the top two elements of the stack.
  * @stack: Double pointer to the stack.
- * @line_number: Line number in the file.
+ * @line_number: Line's number in the  file.
  */
 void add(stack_t **stack, unsigned int line_number)
 {
@@ -65,7 +65,7 @@ void nop(stack_t **stack, unsigned int line_number)
 /**
  * sub - substract two top element
  * @stack: pointer to stack
- * @line_number: line's number
+ * @line_number: line's number in the file
  */
 
 void sub(stack_t **stack, unsigned int line_number)
