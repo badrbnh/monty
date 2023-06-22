@@ -55,7 +55,7 @@ void execute_instructions(FILE *file)
  * @argc: Number of command-line arguments.
  * @argv: Array of command-line arguments.
  *
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure.
+ * Return: EXIT_SUCCESS in success case, EXIT_FAILURE on failure case.
  */
 int main(int argc, char *argv[])
 {
