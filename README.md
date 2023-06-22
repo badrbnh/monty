@@ -1,5 +1,5 @@
 Monty Project/
-Monty 0.98 is a scripting language that is first compiled into monty byte codes it relies on a unique stack with specific instructions
+Monty 0.98 is a scripting language that is first compiled into monty byte codes it relies on a unique stack with specific instructions to manipulate it. the objective of this project is to build or create an interpreter for monty files in C language.
 <h1 align="center">Monty</h1>
 
 <h3>
