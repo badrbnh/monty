@@ -30,6 +30,8 @@ void execute_instructions(FILE *file)
 			instruction.f = pop;
 		else if (strcmp(instruction.opcode, "pint") == 0)
 			instruction.f = pint;
+		else if (strcmp(instruction.opcode, "swap") == 0)
+			instruction.f = swap;
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",
