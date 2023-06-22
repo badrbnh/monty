@@ -1,41 +1,38 @@
-#include "lib.h"
+#include "monty.h"
 
-int pop()
+struct node
 {
-    int value;
-    if (top == -1)
-    {
-        fprintf(stderr, "Stack Underflow\n");
-        exit(1);
-    }
-    value = stack_arr[top];
-    top--;
-    return value;
-}
+    struct node *link;
+    int data;
+
+   
+} *top = NULL;
+
 
 void push(int data)
 {
-    if (top == LIMIT - 1)
+    struct node *newNode;
+    newNode = malloc(sizeof(newNode));
+    if (newNode == NULL)
     {
-        fprintf(stderr, "Stack Overflow\n");
-        return;
+        printf("Stack Overflow\n");
+        exit(1);
     }
-    top++;
-    stack_arr[top] = data;
+
+    newNode->data = data;
+    newNode->link = NULL;
+
+    newNode->link = top;
+    top = newNode;
 }
 
-void pall()
+void print()
 {
-    int i;
-
-    if (top == -1)
+    struct node *temp;
+    temp = top;
+    while(temp)
     {
-        fprintf(stderr, "Stack Underflow\n");
-        return;
+        printf("%d\n", temp->data);
+        temp = temp->link;
     }
-    for (i = top; i >= 0; i--)
-    {
-        fprintf(stdout, "%d ", stack_arr[i]);
-    }
-    fprintf(stdout, "\n");
 }

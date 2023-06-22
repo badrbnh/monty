@@ -1,5 +1,5 @@
-#ifndef LIB_H
-#define LIB_H
+#ifndef MONTY_H
+#define MONTY_H
 
 /*Libraries*/
 #include <stdio.h>
@@ -45,7 +45,9 @@ typedef struct instruction_s
 
 
 /*Stack Functions*/
-
+void pall();
+void push(int data);
+int pop();
 /*Queues Functios*/
 
 
