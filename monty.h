@@ -32,7 +32,7 @@ typedef struct stack_s
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
- * Description: opcode and its function
+ * Description: opcode's function
  * for stack, queues, LIFO, FIFO
  */
 typedef struct instruction_s
