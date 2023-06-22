@@ -4,23 +4,7 @@
  * execute_instructions - Executes Monty instructions from a file
  * @file: pointer of the input file
  */
-void execute_instructions(FILE *file)
-{
-	unsigned int line_number = 0;
-	stack_t *stack = NULL;
-	instruction_t instruction;
-	char line[1024];
-	char *opcode;
 
-	while (fgets(line, sizeof(line), file))
-	{
-		line_number++;
-		opcode = strtok(line, " \t\n");
-
-		if (opcode == NULL || opcode[0] == '#')
-			continue;
-
-		instruction.opcode = opcode;
 
 		if (strcmp(instruction.opcode, "push") == 0)
 			instruction.f = push;
