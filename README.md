@@ -1,4 +1,5 @@
 Monty Project/
+Monty 0.98 is a scripting language that is first compiled into monty byte codes it relies on a unique stack with specific instructions
 <h1 align="center">Monty</h1>
 
 <h3>
