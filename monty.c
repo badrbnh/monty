@@ -2,7 +2,7 @@
 
 /**
  * execute_instructions - Executes Monty instructions from a file
- * @file: Pointer to the input file
+ * @file: pointer of the input file
  */
 void execute_instructions(FILE *file)
 {
