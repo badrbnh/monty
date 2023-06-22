@@ -39,7 +39,7 @@ void push(stack_t **stack, unsigned int line_number)
 /**
  * pall - Prints all the values on the stack.
  * @stack: Double pointer to the stack.
- * @line_number: Line number in the file.
+ * @line_number: Line's number in the file.
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
@@ -56,7 +56,7 @@ void pall(stack_t **stack, unsigned int line_number)
 /**
  * pop - Removes the top element of the stack.
  * @stack: Double pointer to the stack.
- * @line_number: Line number in the file.
+ * @line_number: Line's number in the file.
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
