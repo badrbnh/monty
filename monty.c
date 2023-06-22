@@ -32,6 +32,8 @@ void execute_instructions(FILE *file)
 			instruction.f = pint;
 		else if (strcmp(instruction.opcode, "swap") == 0)
 			instruction.f = swap;
+		else if (strcmp(instruction.opcode, "add") == 0)
+			instruction.f = add;
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",
