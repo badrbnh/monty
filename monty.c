@@ -19,9 +19,7 @@ void execute_instructions(FILE *file)
 
 		if (opcode == NULL || opcode[0] == '#')
 			continue;
-
 		instruction.opcode = opcode;
-
 		if (strcmp(instruction.opcode, "push") == 0)
 			instruction.f = push;
 		else if (strcmp(instruction.opcode, "pall") == 0)
@@ -36,6 +34,8 @@ void execute_instructions(FILE *file)
 			instruction.f = add;
 		else if (strcmp(instruction.opcode, "nop") == 0)
 			instruction.f = nop;
+		else if (strcmp(instruction.opcode, "sub") == 0)
+			instruction.f = sub;
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",
