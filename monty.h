@@ -1,11 +1,7 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-/* Libraries */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+
 
 /* Macros */
 #define LIMIT 4
