@@ -34,6 +34,8 @@ void execute_instructions(FILE *file)
 			instruction.f = swap;
 		else if (strcmp(instruction.opcode, "add") == 0)
 			instruction.f = add;
+		else if (strcmp(instruction.opcode, "nop") == 0)
+			instruction.f = nop;
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",
@@ -43,7 +45,6 @@ void execute_instructions(FILE *file)
 
 		instruction.f(&stack, line_number);
 	}
-
 	free_stack(stack);
 }
 
