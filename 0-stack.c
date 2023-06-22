@@ -1,38 +1,55 @@
 #include "monty.h"
 
-struct node
+/**
+ * push - Pushes an element to the stack.
+ * @stack: Double pointer to the stack.
+ * @line_number: Line number in the file.
+ */
+void push(stack_t **stack, unsigned int line_number)
 {
-    struct node *link;
-    int data;
+	stack_t *new_node;
+	char *arg = strtok(NULL, " \t\n");
+	int value;
 
-   
-} *top = NULL;
+	if (arg == NULL || !isdigit(*arg))
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
+	value = atoi(arg);
 
-void push(int data)
-{
-    struct node *newNode;
-    newNode = malloc(sizeof(newNode));
-    if (newNode == NULL)
-    {
-        printf("Stack Overflow\n");
-        exit(1);
-    }
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
-    newNode->data = data;
-    newNode->link = NULL;
+	new_node->n = value;
+	new_node->prev = NULL;
+	new_node->next = *stack;
 
-    newNode->link = top;
-    top = newNode;
+	if (*stack != NULL)
+		(*stack)->prev = new_node;
+
+	*stack = new_node;
 }
 
-void print()
+
+/**
+ * pall - Prints all the values on the stack.
+ * @stack: Double pointer to the stack.
+ * @line_number: Line number in the file.
+ */
+void pall(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
-    struct node *temp;
-    temp = top;
-    while(temp)
-    {
-        printf("%d\n", temp->data);
-        temp = temp->link;
-    }
+
+	stack_t *current = *stack;
+
+	while (current != NULL)
+	{
+		printf("%d\n", current->n);
+		current = current->next;
+	}
 }
