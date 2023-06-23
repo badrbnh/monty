@@ -7,7 +7,8 @@
 * @opcode: Opcode to be processed.
 * Return: void
 */
-
+void process_opcode(stack_t **stack, unsigned int line_number, char *opcode)
+{
 	instruction_t instructions[] = {
 		{"push", push},
 		{"pall", pall},
