@@ -11,7 +11,7 @@ void execute_instructions(FILE *file)
 	instruction_t instruction;
 	char line[1024];
 	char *opcode;
-	
+
 	while (fgets(line, sizeof(line), file))
 	{
 		line_number++;
@@ -43,7 +43,6 @@ void execute_instructions(FILE *file)
 			line_number, instruction.opcode);
 			exit(EXIT_FAILURE);
 		}
-
 		instruction.f(&stack, line_number);
 	}
 	free_stack(stack);
