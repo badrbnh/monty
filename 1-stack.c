@@ -87,39 +87,32 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
-* process_opcode - Processes the opcode and executes
-* the corresponding function.
-* @stack: Double pointer to the stack.
-* @line_number: Line number in the file.
-* @opcode: Opcode to be processed.
-* Return: void
-*/
-void process_opcode(stack_t **stack, unsigned int line_number, char *opcode)
+ * _div - Divides the second top element of the stack by the top element.
+ * @stack: Double pointer to the stack.
+ * @line_number: Line number in the file.
+ */
+void _div(stack_t **stack, unsigned int line_number)
 {
-	instruction_t instructions[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pop", pop},
-		{"pint", pint},
-		{"swap", swap},
-		{"add", add},
-		{"nop", nop},
-		{"sub", sub},
-		{NULL, NULL}
-	};
+	stack_t *top, *next;
 
-	int i = 0;
-
-	while (instructions[i].opcode != NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		if (strcmp(instructions[i].opcode, opcode) == 0)
-		{
-			instructions[i].f(stack, line_number);
-			return;
-		}
-		i++;
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-	exit(EXIT_FAILURE);
+	top = *stack;
+	next = top->next;
+
+	if (top->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	next->n /= top->n;
+
+	*stack = next;
+	next->prev = NULL;
+	free(top);
 }
