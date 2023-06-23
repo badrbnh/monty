@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * _mul - Multiplies the second top element of the stack with the top element.
  * @stack: Double pointer to the stack.
@@ -54,3 +55,71 @@ void _mod(stack_t **stack, unsigned int line_number)
 	next->prev = NULL;
 	free(top);
 }
+/**
+ * pchar - Prints the char at the top of the stack.
+ * @stack: Double pointer to the stack.
+ * @line_number: Line number in the file.
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((*stack)->n < 0 || (*stack)->n > 127)
+	{
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%c\n", (*stack)->n);
+}
+
+/**
+ * pstr - Prints the string starting at the top of the stack.
+ * @stack: Double pointer to the stack.
+ * @line_number: Line number in the file
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+
+	(void)line_number;
+	while (current != NULL && current->n != 0 && current->n >= 0 &&
+	current->n <= 127)
+	{
+		putchar(current->n);
+
+		current = current->next;
+	}
+
+	putchar('\n');
+}
+/**
+ * rotl - Rotates the stack to the top.
+ * @stack: Double pointer to the stack.
+ * @line_number: Line number in the file.
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top = *stack;
+	stack_t *last = *stack;
+
+	(void)line_number;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return;
+
+	while (last->next != NULL)
+		last = last->next;
+
+	*stack = top->next;
+	(*stack)->prev = NULL;
+
+	last->next = top;
+	top->prev = last;
+	top->next = NULL;
+}
+
