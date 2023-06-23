@@ -10,10 +10,18 @@ void execute_instructions(FILE *file)
 	stack_t *stack = NULL;
 	char line[1024];
 	char *opcode;
+	char *trimmed_line;
 
 	while (fgets(line, sizeof(line), file))
 	{
 		line_number++;
+
+		trimmed_line = line;
+		while (isspace(*trimmed_line))
+			trimmed_line++;
+
+		if (*trimmed_line == '\0' || *trimmed_line == '#')
+			continue;
 		opcode = strtok(line, " \t\n");
 
 		if (opcode == NULL || opcode[0] == '#')
