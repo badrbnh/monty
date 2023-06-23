@@ -6,10 +6,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stddef.h>
 
 /* Macros */
 #define LIMIT 4
 
+/* Structures */
 /* Structures */
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -51,5 +53,7 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
+void execute_instructions(FILE *file);
+void process_opcode(stack_t **stack, unsigned int line_number, char *opcode);
 
 #endif

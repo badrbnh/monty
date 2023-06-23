@@ -8,7 +8,6 @@ void execute_instructions(FILE *file)
 {
 	unsigned int line_number = 0;
 	stack_t *stack = NULL;
-	instruction_t instruction;
 	char line[1024];
 	char *opcode;
 
@@ -19,32 +18,10 @@ void execute_instructions(FILE *file)
 
 		if (opcode == NULL || opcode[0] == '#')
 			continue;
-		instruction.opcode = opcode;
 
-		if (strcmp(instruction.opcode, "push") == 0)
-			instruction.f = push;
-		else if (strcmp(instruction.opcode, "pall") == 0)
-			instruction.f = pall;
-		else if (strcmp(instruction.opcode, "pop") == 0)
-			instruction.f = pop;
-		else if (strcmp(instruction.opcode, "pint") == 0)
-			instruction.f = pint;
-		else if (strcmp(instruction.opcode, "swap") == 0)
-			instruction.f = swap;
-		else if (strcmp(instruction.opcode, "add") == 0)
-			instruction.f = add;
-		else if (strcmp(instruction.opcode, "nop") == 0)
-			instruction.f = nop;
-		else if (strcmp(instruction.opcode, "sub") == 0)
-			instruction.f = sub;
-		else
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n",
-			line_number, instruction.opcode);
-			exit(EXIT_FAILURE);
-		}
-		instruction.f(&stack, line_number);
+		process_opcode(&stack, line_number, opcode);
 	}
+
 	free_stack(stack);
 }
 

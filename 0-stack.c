@@ -71,6 +71,8 @@ void pop(stack_t **stack, unsigned int line_number)
 
 	temp = *stack;
 	*stack = (*stack)->next;
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
 	free(temp);
 }
 
@@ -90,7 +92,6 @@ void pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", (*stack)->n);
 }
 
-
 /**
  * free_stack - Frees a stack.
  * @stack: Pointer to the top of the stack.
@@ -106,3 +107,4 @@ void free_stack(stack_t *stack)
 		free(current);
 	}
 }
+
